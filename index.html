@@ -10,20 +10,21 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <link rel="stylesheet" href="./assets/css/style.css">
 </head>
-<header>
-    <h1>Pear Music</h1>
-</header>
 
 <body>
+    <header>
+        <h1>Pear Music</h1>
+    </header>
 
-    <div>
-        <h2>What type of music do you want to listen to?</h2>
-        <label for="genre"></label>
-        <input type="text" id="genre" placeholder="Enter a music genre" />
-        <button id="btn-recommend">Recommend Music</button>
+    <div class="container">
+        <div>
+            <h2>What type of music do you want to listen to?</h2>
+            <label for="genre"></label>
+            <input type="text" id="genre" placeholder="Enter a music genre" />
+            <button id="btn-recommend">Recommend Music</button>
+        </div>
+        <div id="music-results"></div>
     </div>
-    <div id="music-results"></div>
-
 
     <script src="./assets/js/lastfmapitest.js"></script>
 </body>
