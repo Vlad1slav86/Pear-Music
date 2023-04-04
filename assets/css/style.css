@@ -1,0 +1,123 @@
+/* Styles for the header */
+header {
+    background-color: #007bff;
+    text-align: center;
+    font-size: 300%;
+    padding-block: 1rem;
+    color: white;
+    margin-bottom: 1rem;
+}
+
+h2 {
+    font-size: 200%;
+}
+
+.container {
+    margin: 0 auto;
+    max-width: 800px;
+}
+
+.container > div {
+    margin-bottom: 1rem;
+}
+
+#city-search-form {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+}
+
+.form-label {
+    margin-bottom: 0.5rem;
+}
+
+.form-control {
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    border: 1px solid #ced4da;
+}
+
+.btn-primary {
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 0.3rem;
+}
+
+/* Styles for the search results */
+#search-results {
+    margin-top: 2rem;
+}
+
+.search-result {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.search-result .thumbnail {
+    margin-right: 1rem;
+}
+
+.search-result .thumbnail img {
+    width: 100%;
+    height: auto;
+}
+
+.search-result h3 {
+    margin-bottom: 0.5rem;
+    font-size: 1.25rem;
+}
+
+.search-result p {
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+    color: #6c757d;
+}
+
+#music-results ul {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    justify-content: center;
+    padding: 0;
+}
+
+#music-results li {
+    width: 18%;
+    margin: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+}
+
+#music-results li:nth-child(5n+1) {
+    margin-left: 0;
+}
+
+#music-results li:nth-child(5n) {
+    margin-right: 0;
+}
+
+#music-results li a {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+}
+
+#music-results li img {
+    max-width: 100%;
+    height: auto;
+}
+
+@media screen and (max-width: 768px) {
+    #music-results li {
+        width: 45%;
+    }
+}
