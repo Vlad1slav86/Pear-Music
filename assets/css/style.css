@@ -7,6 +7,12 @@ header {
     color: white;
     margin-bottom: 1rem;
 }
+img {
+    
+    display: flex;
+    justify-content:flex-end;
+    max-width: 5%;
+}
 
 h2 {
     font-size: 200%;

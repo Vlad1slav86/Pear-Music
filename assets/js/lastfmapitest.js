@@ -53,6 +53,7 @@ var limit = 10; // number of tracks to display
 var btnRecommend = document.getElementById('btn-recommend');
 var musicResults = document.getElementById('music-results');
 
+
 btnRecommend.addEventListener('click', function () {
     var genre = document.getElementById('genre').value;
 
@@ -106,3 +107,15 @@ btnRecommend.addEventListener('click', function () {
             musicResults.innerHTML = '<p>An error occurred while fetching data from Last.fm API.</p>';
         });
 });
+
+
+var unsplashKey= '6C6k-iF-nEEo_osAOIyNfErFE_JzlPoOwrHBtvAUxM4';
+
+// if (!genre) {
+//     musicResults.innerHTML = '<p>Please enter a music genre.</p>';
+//     return;
+// }
+
+// var unsplashUrl = `https://api.unsplash.com/search/photos?query=${genre}&client_id=${unsplashKey}&format=json&limit=${limit}';
+// 
+// 
