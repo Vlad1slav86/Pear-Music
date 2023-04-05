@@ -1,4 +1,4 @@
-/*var apiKey = '0d52ceaea588808b87502ae373b9f504';
+var apiKey = '0d52ceaea588808b87502ae373b9f504';
 
 var btnRecommend = document.getElementById('btn-recommend');
 var musicResults = document.getElementById('music-results');
@@ -45,22 +45,23 @@ btnRecommend.addEventListener('click', function () {
         .catch(function (error) {
             musicResults.innerHTML = '<p>ERROR, TRY AGAIN</p>';
         });
-});*/
+});
 
 var apiKey = '0d52ceaea588808b87502ae373b9f504';
 var limit = 10; // number of tracks to display
 
 var btnRecommend = document.getElementById('btn-recommend');
 var musicResults = document.getElementById('music-results');
+var genre = document.getElementById('genre').value;
 
 btnRecommend.addEventListener('click', function () {
     var genre = document.getElementById('genre').value;
-
+    display ();
     if (!genre) {
         musicResults.innerHTML = '<p>Please enter a music genre.</p>';
         return;
     }
-
+    
     var apiUrl = `http://ws.audioscrobbler.com/2.0/?method=tag.gettoptracks&tag=${genre}&api_key=${apiKey}&format=json&limit=${limit}`;
 
     fetch(apiUrl)
@@ -106,3 +107,9 @@ btnRecommend.addEventListener('click', function () {
             musicResults.innerHTML = '<p>An error occurred while fetching data from Last.fm API.</p>';
         });
 });
+
+
+
+
+
+
