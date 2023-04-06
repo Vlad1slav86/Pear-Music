@@ -11,7 +11,7 @@ header {
 html, body {
     background-color: #ced4da;
     color: black;
-    height: 100%;
+    height: auto;
 }
 
 .title, .dark-modebtn {
@@ -45,13 +45,6 @@ h2 {
 
 .container > div {
     margin-bottom: 1rem;
-}
-
-#city-search-form {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 1rem;
-    margin-top: 1rem;
 }
 
 .form-label {
@@ -139,7 +132,7 @@ h2 {
 
 #music-results li img {
     max-width: 100%;
-    height: auto;
+    height: 9rem;
 }
 
 
@@ -149,6 +142,7 @@ li:hover > a {
     margin: -6px;
     border-style: solid;
     border-color: gray;
+    color:#fff;
 }
 /*
 added to enlarge icon when hovering over selection
