@@ -1,12 +1,11 @@
 /* Styles for the header */
 header {
-    background-color: #007bff;
-  text-align: center;
     font-size: 300%;
     padding-block: 1rem;
     color: white;
     margin-bottom: 1rem;
- 
+  background-color: black;
+    text-align: center;
 }
 html, body {
     background-color: #ced4da;
@@ -142,6 +141,17 @@ h2 {
     height: auto;
 }
 
+
+
+
+li:hover > a {
+    margin: -6px;
+    border-style: solid;
+    border-color: gray;
+}
+/*
+added to enlarge icon when hovering over selection
+*/
 @media screen and (max-width: 768px) {
     #music-results li {
         width: 45%;

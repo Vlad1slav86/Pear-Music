@@ -15,6 +15,15 @@ var limit = 10;
 var btnRecommend = document.getElementById('btn-recommend');
 var musicResults = document.getElementById('music-results');
 
+
+genre.addEventListener('keydown', function (event) {  /* added enter function on search*/
+    if (event.key === "Enter") {
+      event.preventDefault();
+      document.getElementById('btn-recommend').click();
+    }
+});
+
+
 btnRecommend.addEventListener('click', function () {
     var genre = document.getElementById('genre').value;
 
@@ -81,3 +90,4 @@ btnRecommend.addEventListener('click', function () {
         musicResults.innerHTML = `<p>${error.message}</p>`;
     });
 });
+
