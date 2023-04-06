@@ -1,36 +1,50 @@
+:root {
+    --primary-color: #3949ab;
+    --secondary-color: #c5cae9;
+    --text-color: #333;
+    --light-color: #f5f5f5;
+    --dark-color: #212121;
+}
+
 /* Styles for the header */
 header {
-    font-size: 300%;
-    padding-block: 1rem;
-    color: white;
-    margin-bottom: 1rem;
-    background-color: white;
+    font-size: 3rem;
+    padding: 1rem;
+    color: var(--light-color);
+    background-color: var(--primary-color);
     font-family: Audiowide;
     text-align: center;
 }
-html, body {
-    background-color: #ced4da;
-    color: black;
+
+html,
+body {
+    background-color: var(--light-color);
+    color: var(--text-color);
     height: auto;
 }
 
-.title, .dark-modebtn {
-display: inline-block;
+.title,
+.dark-mode-btn {
+    display: inline-block;
 
 }
-.dark-modebtn {
+
+.dark-mode-btn {
     float: right;
     margin-right: 20px;
 }
+
 .dark-mode {
     background-color: black;
-    color:#ced4da;
 }
+
 .img-container {
     display: inline-block;
-    margin-left: left;
-    margin-right: auto;
-    max-width: 5%;
+  margin-left: left;
+  margin-right: auto;
+  max-width: 5%;
+  width: 100px; /* set a fixed width */
+  height: 100px;
 }
 
 h2 {
@@ -41,27 +55,38 @@ h2 {
 .container {
     margin: 0 auto;
     max-width: 800px;
+    text-align: center;
+    background-color: var(--light-color);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.container > div {
+.container.dark-mode {
+    background-color: black;
+    color: white;
+}
+
+.container>div {
     margin-bottom: 1rem;
 }
 
 .form-label {
     margin-bottom: 0.5rem;
+    color: var(--primary-color);
 }
 
 .form-control {
     padding: 0.5rem;
     border-radius: 0.25rem;
-    border: 1px solid #ced4da;
+    border: 1px solid var(--secondary-color);
 }
 
 .btn-primary {
     padding: 0.5rem 1rem;
     border-radius: 0.25rem;
-    background-color: #007bff;
-    color: #fff;
+    background-color: var(--primary-color);
+    color: var(--light-color);
     border: none;
     cursor: pointer;
     border-radius: 0.3rem;
@@ -113,6 +138,10 @@ h2 {
     flex-direction: column;
     justify-content: space-between;
     text-align: center;
+    background-color: var(--light-color);
+    border-radius: 0.5rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
 }
 
 #music-results li:nth-child(5n+1) {
@@ -133,17 +162,19 @@ h2 {
 #music-results li img {
     max-width: 100%;
     height: 9rem;
+    object-fit: cover;
 }
 
 
 
 
-li:hover > a {
+li:hover>a {
     margin: -6px;
     border-style: solid;
-    border-color: gray;
-    color:#fff;
+    border-color: var(--primary-color);
+    color: var(--primary-color);
 }
+
 /*
 added to enlarge icon when hovering over selection
 */
