@@ -32,7 +32,7 @@ btnRecommend.addEventListener('click', function () {
         return;
     }
 
-    var apiUrl = `http://ws.audioscrobbler.com/2.0/?method=tag.gettoptracks&tag=${genre}&api_key=${apiKey}&format=json&limit=${limit}`;
+    var apiUrl = `https://ws.audioscrobbler.com/2.0/?method=tag.gettoptracks&tag=${genre}&api_key=${apiKey}&format=json&limit=${limit}`;
     var unsplashUrl = `https://api.unsplash.com/search/photos?query=${genre}+music&client_id=${unsplashKey}&format=json&per_page=${limit}`;
 
     var tracksPromise = fetch(apiUrl).then(function (response) {

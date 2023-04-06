@@ -4,7 +4,8 @@ header {
     padding-block: 1rem;
     color: white;
     margin-bottom: 1rem;
-  background-color: black;
+    background-color: white;
+    font-family: Audiowide;
     text-align: center;
 }
 html, body {
@@ -26,8 +27,8 @@ display: inline-block;
     color:#ced4da;
 }
 .img-container {
-    display: block;
-    margin-left: auto;
+    display: inline-block;
+    margin-left: left;
     margin-right: auto;
     max-width: 5%;
 }
