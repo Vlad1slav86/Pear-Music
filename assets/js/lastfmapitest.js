@@ -85,7 +85,7 @@ btnRecommend.addEventListener('click', function () {
                             var artist = track.artist.name;
                             var name = track.name;
                             var url = track.url;
-                            var img = track.image[1]['#text']; // use medium size image
+                            var img = track.image[1]['#text']; // use medium size image-
 
                             html += `
                                 <li>
