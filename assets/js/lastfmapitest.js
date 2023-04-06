@@ -98,6 +98,7 @@ btnRecommend.addEventListener('click', function () {
                                 <p>by ${artist}</p>
                             </div>
                         </a>
+                        <button onclick="addToPlaylist('${artist}', '${name}')">Add to Playlist</button>
                     </li>
                 `;
             });
@@ -113,3 +114,53 @@ btnRecommend.addEventListener('click', function () {
     });
 });
 
+function addToPlaylist(artist, name) {
+    // retrieve existing playlist from local storage, or initialize an empty array
+    var playlist = JSON.parse(localStorage.getItem('playlist') || '[]');
+
+    // add new track to the playlist
+    playlist.push({ artist: artist, name: name });
+
+    // save updated playlist to local storage
+    localStorage.setItem('playlist', JSON.stringify(playlist));
+
+    // update display of playlist
+    renderPlaylist();
+}
+
+function renderPlaylist() {
+    // retrieve playlist from local storage
+    var playlist = JSON.parse(localStorage.getItem('playlist') || '[]');
+
+    // create HTML for playlist items
+    var playlistHtml = '<h3>My Playlist</h3><ul>';
+    playlist.forEach(function (track) {
+        playlistHtml += `
+      <li>
+        <span class="artist">${track.artist}</span>
+        <span class="name">${track.name}</span>
+      </li>
+    `;
+    });
+    playlistHtml += '</ul>';
+
+    // add reset button to playlist
+    playlistHtml += '<button id="reset-playlist">Reset Playlist</button>';
+
+    // update display of playlist
+    var playlistContainer = document.getElementById('playlist');
+    playlistContainer.innerHTML = playlistHtml;
+
+    // add event listener to reset button
+    var resetButton = document.getElementById('reset-playlist');
+    resetButton.addEventListener('click', resetPlaylist);
+}
+function resetPlaylist() {
+    // remove playlist from local storage
+    localStorage.removeItem('playlist');
+
+    // update display of playlist
+    renderPlaylist();
+}
+// call renderPlaylist function to display initial playlist on page load
+renderPlaylist();

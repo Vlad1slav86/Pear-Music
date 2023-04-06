@@ -30,10 +30,10 @@ body {
 
 
 .dark-mode-btn {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  z-index: 9999;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
 }
 
 .dark-mode {
@@ -170,6 +170,34 @@ h2 {
 #music-results li:hover {
     border: 5px solid var(--primary-color);
     transform: scale(1.05);
+}
+
+.playlist {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+    color: #333;
+}
+
+.playlist ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+}
+
+.playlist li {
+    font-size: 1.2rem;
+    margin: 10px 0;
+}
+
+.playlist li span.artist {
+    color: purple;
+}
+
+.playlist li span.name {
+    color: red;
 }
 
 /*
