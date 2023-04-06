@@ -139,8 +139,7 @@ function renderPlaylist() {
       <li>
         <span class="artist">${track.artist}</span>
         <span class="name">${track.name}</span>
-      </li>
-    `;
+      </li>`;
     });
     playlistHtml += '</ul>';
 

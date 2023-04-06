@@ -200,6 +200,26 @@ h2 {
     color: red;
 }
 
+input[type="text"]::placeholder {
+    text-align: center;
+}
+
+input[type="text"] {
+    text-align: center;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+#btn-recommend {
+    margin-top: 1rem;
+}
+
 /*
 added to enlarge icon when hovering over selection
 */

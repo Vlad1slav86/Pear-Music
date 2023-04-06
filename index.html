@@ -18,7 +18,7 @@
             <h1>Pear Music</h1>
         </div>
         <div class="dark-mode-btn">
-            <button>Toggle Light/Dark mode</button>
+            <button class="button is-success is-light is-responsive">Toggle Light/Dark mode</button>
         </div>
         <div class='img-container'>
             <img src="assets/pear-logo.png">
@@ -29,8 +29,11 @@
         <div>
             <h2>What type of music do you want to listen to?</h2>
             <label for="genre"></label>
-            <input type="text" id="genre" placeholder="Enter a music genre" />
-            <button id="btn-recommend">Recommend Music</button>
+            <div class="input-group">
+                <input type="text" id="genre" class="input is-info is-normal is-focused" style="width: 600px"
+                    placeholder="Enter a music genre"/>
+                <button id="btn-recommend" class="button is-info is-responsive">Recommend Music</button>
+            </div>
         </div>
         <div id="music-results"></div>
     </div>
