@@ -1,15 +1,40 @@
 /* Styles for the header */
 header {
-    background-color: black;
-    text-align: center;
     font-size: 300%;
     padding-block: 1rem;
     color: white;
     margin-bottom: 1rem;
+  background-color: black;
+    text-align: center;
+}
+html, body {
+    background-color: #ced4da;
+    color: black;
+    height: 100%;
+}
+
+.title, .dark-modebtn {
+display: inline-block;
+
+}
+.dark-modebtn {
+    float: right;
+    margin-right: 20px;
+}
+.dark-mode {
+    background-color: black;
+    color:#ced4da;
+}
+.img-container {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 5%;
 }
 
 h2 {
     font-size: 200%;
+    color: ;
 }
 
 .container {

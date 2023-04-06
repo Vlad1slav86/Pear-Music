@@ -16,16 +16,27 @@
 
 <body>
     <header>
+        <div class ="title">
         <h1>Pear Music</h1>
+    </div>
+        <div class="dark-modebtn">
+        <button>Dark mode</button>
+    </div>
+    <div class='img-container'>
+        <img src="assets/pear-logo.png">
+    </div>
+
     </header>
 
     <div class="container">
+        <div class='img-container'></div>
         <div>
             <h2>What type of music do you want to listen to?</h2>
             <label for="genre"></label>
             <input type="text" id="genre" placeholder="Enter a music genre" />
             <button id="btn-recommend">Recommend Music</button>
         </div>
+        
         <div id="music-results"></div>
     </div>
 
