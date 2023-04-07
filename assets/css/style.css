@@ -6,6 +6,11 @@
     --dark-color: #212121;
 }
 
+.img-container {
+    margin-top: 20px;
+    margin-bottom: 1rem;
+}
+
 /* Styles for the header */
 header {
     font-size: 3rem;
@@ -23,7 +28,12 @@ body {
     height: auto;
 }
 
-.title,
+.title {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+}
+
 .dark-mode-btn {
     display: inline-block;
 }
@@ -39,6 +49,7 @@ body {
 .dark-mode {
     background-color: black;
 }
+
 
 .img-container {
     display: inline-block;
@@ -218,6 +229,20 @@ input[type="text"] {
 
 #btn-recommend {
     margin-top: 1rem;
+}
+
+
+
+
+footer {
+    margin: 0 auto;
+    max-width: 200px;
+    text-align: left;
+    background-color: var(--light-color);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 100px;
 }
 
 /*

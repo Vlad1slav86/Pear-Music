@@ -61,20 +61,20 @@ btnRecommend.addEventListener('click', function () {
         if (response.ok) {
             return response.json();
         } else {
-            throw new Error('Failed to retrieve data from Last.fm API.');
+            Alert('Failed to retrieve data from Last.fm API.');
         }
     }).catch(function (error) {
-        throw new Error('An error occurred while fetching data from Last.fm API.');
+        Alert('An error occurred while fetching data from Last.fm API.');
     });
 
     var photosPromise = fetch(unsplashUrl).then(function (response) {
         if (response.ok) {
             return response.json();
         } else {
-            throw new Error('Failed to retrieve data from Unsplash API.');
+            Alert('Failed to retrieve data from Unsplash API.');
         }
     }).catch(function (error) {
-        throw new Error('An error occurred while fetching data from Unsplash API.');
+        Alert('An error occurred while fetching data from Unsplash API.');
     });
 
     Promise.all([tracksPromise, photosPromise]).then(function ([tracksData, photosData]) {
@@ -101,6 +101,7 @@ btnRecommend.addEventListener('click', function () {
                         <button onclick="addToPlaylist('${artist}', '${name}')">Add to Playlist</button>
                     </li>
                 `;
+
             });
 
             html += '</ul>';
@@ -133,7 +134,7 @@ function renderPlaylist() {
     var playlist = JSON.parse(localStorage.getItem('playlist') || '[]');
 
     // create HTML for playlist items
-    var playlistHtml = '<h3>My Playlist</h3><ul>';
+    var playlistHtml = '<h3 style="color:white;">My Playlist</h3><ul>';
     playlist.forEach(function (track) {
         playlistHtml += `
       <li>
