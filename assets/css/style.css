@@ -10,7 +10,7 @@
 header {
     font-size: 3rem;
     padding: 1rem;
-    color: var(--light-color);
+    color: var(--text-color);
     background-color: var(--primary-color);
     font-family: Audiowide;
     text-align: center;
