@@ -1,12 +1,34 @@
-var mode = document.querySelector('.dark-mode');
-var darkModeBtn = document.querySelector('button');
+var mode = localStorage.getItem('mode');
+var bodyElement = document.body;
+var containerElement = document.querySelector('.container');
+var darkModeBtn = document.querySelector('.dark-mode-btn button');
 
-function theme() {
-    var element = document.body;
-    element.classList.toggle('dark-mode');
+//changed button to switch text when clicked and theme is changed
+//added localStorage.setItem to save users previously used theme
+function toggleMode() {
+    bodyElement.classList.toggle('dark-mode');
+    containerElement.classList.toggle('dark-mode');
+
+    if (bodyElement.classList.contains('dark-mode')) {
+        localStorage.setItem('mode', 'dark');
+        darkModeBtn.textContent = 'Switch to Light Mode';
+    } else {
+        localStorage.setItem('mode', 'light');
+        darkModeBtn.textContent = 'Switch to Dark Mode';
+    }
 }
 
-darkModeBtn.addEventListener('click', theme);
+darkModeBtn.addEventListener('click', toggleMode);
+
+if (mode === 'dark') {
+    bodyElement.classList.add('dark-mode');
+    containerElement.classList.add('dark-mode');
+    darkModeBtn.textContent = 'Switch to Light Mode';
+} else {
+    bodyElement.classList.remove('dark-mode');
+    containerElement.classList.remove('dark-mode');
+    darkModeBtn.textContent = 'Switch to Dark Mode';
+}
 
 var apiKey = '0d52ceaea588808b87502ae373b9f504';
 var unsplashKey = '6C6k-iF-nEEo_osAOIyNfErFE_JzlPoOwrHBtvAUxM4';
@@ -18,8 +40,8 @@ var musicResults = document.getElementById('music-results');
 
 genre.addEventListener('keydown', function (event) {  /* added enter function on search*/
     if (event.key === "Enter") {
-      event.preventDefault();
-      document.getElementById('btn-recommend').click();
+        event.preventDefault();
+        document.getElementById('btn-recommend').click();
     }
 });
 
@@ -56,7 +78,7 @@ btnRecommend.addEventListener('click', function () {
     });
 
     Promise.all([tracksPromise, photosPromise]).then(function ([tracksData, photosData]) {
-        var html = '<h3>Recommended Music</h3>';
+        var html = '<h3>Here are the top 10 tracks of that genre!</h3>';
 
         if (tracksData.tracks.track.length > 0) {
             html += '<ul>';
@@ -76,6 +98,7 @@ btnRecommend.addEventListener('click', function () {
                                 <p>by ${artist}</p>
                             </div>
                         </a>
+                        <button onclick="addToPlaylist('${artist}', '${name}')">Add to Playlist</button>
                     </li>
                 `;
             });
@@ -91,3 +114,52 @@ btnRecommend.addEventListener('click', function () {
     });
 });
 
+function addToPlaylist(artist, name) {
+    // retrieve existing playlist from local storage, or initialize an empty array
+    var playlist = JSON.parse(localStorage.getItem('playlist') || '[]');
+
+    // add new track to the playlist
+    playlist.push({ artist: artist, name: name });
+
+    // save updated playlist to local storage
+    localStorage.setItem('playlist', JSON.stringify(playlist));
+
+    // update display of playlist
+    renderPlaylist();
+}
+
+function renderPlaylist() {
+    // retrieve playlist from local storage
+    var playlist = JSON.parse(localStorage.getItem('playlist') || '[]');
+
+    // create HTML for playlist items
+    var playlistHtml = '<h3>My Playlist</h3><ul>';
+    playlist.forEach(function (track) {
+        playlistHtml += `
+      <li>
+        <span class="artist">${track.artist}</span>
+        <span class="name">${track.name}</span>
+      </li>`;
+    });
+    playlistHtml += '</ul>';
+
+    // add reset button to playlist
+    playlistHtml += '<button id="reset-playlist">Reset Playlist</button>';
+
+    // update display of playlist
+    var playlistContainer = document.getElementById('playlist');
+    playlistContainer.innerHTML = playlistHtml;
+
+    // add event listener to reset button
+    var resetButton = document.getElementById('reset-playlist');
+    resetButton.addEventListener('click', resetPlaylist);
+}
+function resetPlaylist() {
+    // remove playlist from local storage
+    localStorage.removeItem('playlist');
+
+    // update display of playlist
+    renderPlaylist();
+}
+// call renderPlaylist function to display initial playlist on page load
+renderPlaylist();
