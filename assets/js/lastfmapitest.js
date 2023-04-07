@@ -1,58 +1,41 @@
-/*var apiKey = '0d52ceaea588808b87502ae373b9f504';
+var mode = localStorage.getItem('mode');
+var bodyElement = document.body;
+var containerElement = document.querySelector('.container');
+var darkModeBtn = document.querySelector('.dark-mode-btn button');
 
-var btnRecommend = document.getElementById('btn-recommend');
-var musicResults = document.getElementById('music-results');
-//dustin is so cool
-btnRecommend.addEventListener('click', function () {
-    var genre = document.getElementById('genre').value;
+//changed button to switch text when clicked and theme is changed
+//added localStorage.setItem to save users previously used theme
+function toggleMode() {
+    bodyElement.classList.toggle('dark-mode');
+    containerElement.classList.toggle('dark-mode');
 
-    if (!genre) {
-        musicResults.innerHTML = '<p>Please enter a music genre.</p>';
-        return;
+    if (bodyElement.classList.contains('dark-mode')) {
+        localStorage.setItem('mode', 'dark');
+        darkModeBtn.textContent = 'Switch to Light Mode';
+    } else {
+        localStorage.setItem('mode', 'light');
+        darkModeBtn.textContent = 'Switch to Dark Mode';
     }
+}
 
-    var apiUrl = `http://ws.audioscrobbler.com/2.0/?method=tag.gettoptracks&tag=${genre}&api_key=${apiKey}&format=json`;
+darkModeBtn.addEventListener('click', toggleMode);
 
-    fetch(apiUrl)
-        .then(function (response) {
-            if (response.ok) {
-                response.json().then(function (data) {
-                    var html = '<h3>Recommended Music</h3>';
-
-                    if (data.tracks.track.length > 0) {
-                        html += '<ul>';
-                    
-                        data.tracks.track.slice(0, 10).forEach(function (track) {
-                            var artist = track.artist.name;
-                            var name = track.name;
-                            var url = track.url;
-                    
-                            html += `<li><a href="${url}" target="_blank">${name} by ${artist}</a></li>`;
-                        });
-                    
-                        html += '</ul>';
-                    } else {
-                        html += '<p>No results found.</p>';
-                    }
-                    
-
-                    musicResults.innerHTML = html;
-                });
-            } else {
-                musicResults.innerHTML = '<p>I CANT GET THE REX</p>';
-            }
-        })
-        .catch(function (error) {
-            musicResults.innerHTML = '<p>ERROR, TRY AGAIN</p>';
-        });
-});*/
+if (mode === 'dark') {
+    bodyElement.classList.add('dark-mode');
+    containerElement.classList.add('dark-mode');
+    darkModeBtn.textContent = 'Switch to Light Mode';
+} else {
+    bodyElement.classList.remove('dark-mode');
+    containerElement.classList.remove('dark-mode');
+    darkModeBtn.textContent = 'Switch to Dark Mode';
+}
 
 var apiKey = '0d52ceaea588808b87502ae373b9f504';
-var limit = 10; // number of tracks to display
+var unsplashKey = '6C6k-iF-nEEo_osAOIyNfErFE_JzlPoOwrHBtvAUxM4';
+var limit = 10;
 
 var btnRecommend = document.getElementById('btn-recommend');
 var musicResults = document.getElementById('music-results');
-
 
 btnRecommend.addEventListener('click', function () {
     var genre = document.getElementById('genre').value;
@@ -62,60 +45,62 @@ btnRecommend.addEventListener('click', function () {
         return;
     }
 
-    var apiUrl = `http://ws.audioscrobbler.com/2.0/?method=tag.gettoptracks&tag=${genre}&api_key=${apiKey}&format=json&limit=${limit}`;
+    var apiUrl = `https://ws.audioscrobbler.com/2.0/?method=tag.gettoptracks&tag=${genre}&api_key=${apiKey}&format=json&limit=${limit}`;
+    var unsplashUrl = `https://api.unsplash.com/search/photos?query=${genre}+music&client_id=${unsplashKey}&format=json&per_page=${limit}`;
 
-    fetch(apiUrl)
-        .then(function (response) {
-            if (response.ok) {
-                response.json().then(function (data) {
-                    var html = '<h3>Recommended Music</h3>';
+    var tracksPromise = fetch(apiUrl).then(function (response) {
+        if (response.ok) {
+            return response.json();
+        } else {
+            throw new Error('Failed to retrieve data from Last.fm API.');
+        }
+    }).catch(function (error) {
+        throw new Error('An error occurred while fetching data from Last.fm API.');
+    });
 
-                    if (data.tracks.track.length > 0) {
-                        html += '<ul>';
+    var photosPromise = fetch(unsplashUrl).then(function (response) {
+        if (response.ok) {
+            return response.json();
+        } else {
+            throw new Error('Failed to retrieve data from Unsplash API.');
+        }
+    }).catch(function (error) {
+        throw new Error('An error occurred while fetching data from Unsplash API.');
+    });
 
-                        data.tracks.track.forEach(function (track) {
-                            var artist = track.artist.name;
-                            var name = track.name;
-                            var url = track.url;
-                            var img = track.image[1]['#text']; // use medium size image
+    Promise.all([tracksPromise, photosPromise]).then(function ([tracksData, photosData]) {
+        var html = '<h3>Here are the top 10 tracks of that genre!</h3>';
 
-                            html += `
-                                <li>
-                                    <a href="${url}" target="_blank">
-                                        <img src="${img}" alt="${name} by ${artist}">
-                                        <div>
-                                            <h4>${name}</h4>
-                                            <p>by ${artist}</p>
-                                        </div>
-                                    </a>
-                                </li>
-                            `;
-                        });
+        if (tracksData.tracks.track.length > 0) {
+            html += '<ul>';
 
-                        html += '</ul>';
-                    } else {
-                        html += '<p>No results found.</p>';
-                    }
+            tracksData.tracks.track.forEach(function (track, index) {
+                var artist = track.artist.name;
+                var name = track.name;
+                var url = track.url;
+                var imgSrc = photosData.results[index].urls.regular;
 
-                    musicResults.innerHTML = html;
-                });
-            } else {
-                musicResults.innerHTML = '<p>Failed to retrieve data from Last.fm API.</p>';
-            }
-        })
-        .catch(function (error) {
-            musicResults.innerHTML = '<p>An error occurred while fetching data from Last.fm API.</p>';
-        });
+                html += `
+                    <li>
+                        <a href="${url}" target="_blank">
+                            <img src="${imgSrc}" alt="${name} by ${artist}">
+                            <div>
+                                <h4>${name}</h4>
+                                <p>by ${artist}</p>
+                            </div>
+                        </a>
+                        <button onclick="addToPlaylist('${artist}', '${name}')">Add to Playlist</button>
+                    </li>
+                `;
+            });
+
+            html += '</ul>';
+        } else {
+            html += '<p>No results found.</p>';
+        }
+
+        musicResults.innerHTML = html;
+    }).catch(function (error) {
+        musicResults.innerHTML = `<p>${error.message}</p>`;
+    });
 });
-
-
-var unsplashKey= '6C6k-iF-nEEo_osAOIyNfErFE_JzlPoOwrHBtvAUxM4';
-
-// if (!genre) {
-//     musicResults.innerHTML = '<p>Please enter a music genre.</p>';
-//     return;
-// }
-
-// var unsplashUrl = `https://api.unsplash.com/search/photos?query=${genre}&client_id=${unsplashKey}&format=json&limit=${limit}';
-// 
-// 

@@ -5,17 +5,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Pear Music</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide">
     <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 
 <body>
     <header>
         <h1>Pear Music</h1>
-        <img src="assets/pear-logo.png">
-
     </header>
 
     <div class="container">
@@ -23,12 +22,14 @@
         <div>
             <h2>What type of music do you want to listen to?</h2>
             <label for="genre"></label>
-            <input type="text" id="genre" placeholder="Enter a music genre" />
-            <button id="btn-recommend">Recommend Music</button>
+            <div class="input-group">
+                <input type="text" id="genre" class="input is-info is-normal is-focused" style="width: 600px"
+                    placeholder="Enter a music genre" />
+                <button id="btn-recommend" class="button is-info is-responsive">Recommend Music</button>
+            </div>
         </div>
         <div id="music-results"></div>
     </div>
-
 
     <script src="./assets/js/lastfmapitest.js"></script>
 </body>
